@@ -31,6 +31,7 @@ void CAddrInfo::Update(bool good) {
 	 100.0 * stat1W.reliability, 100.0 * (stat1W.reliability + 1.0 - stat1W.weight), stat1W.count);
 }
 
+
 bool CAddrDb::Get_(CServiceResult &ip, int &wait) {
   int64 now = time(NULL);
   int cont = 0;
@@ -69,6 +70,7 @@ int CAddrDb::Lookup_(const CService &ip) {
     return ipToId[ip];
   return -1;
 }
+
 
 void CAddrDb::Good_(const CService &addr, int clientV, std::string clientSV, int blocks) {
   int id = Lookup_(addr);
@@ -126,7 +128,6 @@ void CAddrDb::Skipped_(const CService &addr)
 //  printf("%s: skipped\n", ToString(addr).c_str());
   nDirty++;
 }
-
 
 void CAddrDb::Add_(const CAddress &addr, bool force) {
   if (!force && !addr.IsRoutable())
